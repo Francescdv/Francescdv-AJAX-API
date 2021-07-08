@@ -1,10 +1,14 @@
+var urlChuck = "http://api.icndb.com/jokes/random";
 
-$(document).ready(function () {
+
+//Nivell 1 i 2
+
+/*$(document).ready(function () {
     $('#jokes').click(function (e) { 
         e.preventDefault();
        $.ajax({
            type:'post',
-           url:'http://api.icndb.com/jokes/random',
+           url:urlChuck,
            dataType:'json',
            success: function (data) {
                $('#joke-text').html(data.value.joke);
@@ -19,4 +23,22 @@ $(document).ready(function () {
        
         
     });
+});
+
+*/
+
+//Nivell 3
+
+$(document).ready(function () {
+  $('#jokes').click(function (e) {
+    e.preventDefault();
+
+    fetch(urlChuck)
+      .then((response) => response.json())
+      .then((data) => {
+        $('#joke-text').html(data.value.joke);
+      })
+
+      .catch((err) => console.log(err));
+  });
 });
